@@ -10,6 +10,7 @@ contract Marketplace {
         uint id;
         string name;
         uint price;
+        string imgPath;
         address payable owner;
         bool purchased;
     }
@@ -18,6 +19,7 @@ contract Marketplace {
         uint id,
         string name,
         uint price,
+        string imgPath,
         address payable owner,
         bool purchased
     );
@@ -26,6 +28,7 @@ contract Marketplace {
         uint id,
         string name,
         uint price,
+        string imgPath,
         address payable seller,
         address buyer,
         bool purchased
@@ -35,15 +38,15 @@ contract Marketplace {
         name = "My Marketplace";
     }
 
-    function createProduct(string memory _name, uint _price) public {
+    function createProduct(string memory _name, uint _price, string memory _path) public {
         require(bytes(_name).length > 0, "Product name cannot be blank");
         require(_price > 0, "Product price should be greater than 0");
 
         productCount++;
 
-        products[productCount] = Product(productCount, _name, _price, msg.sender, false);
+        products[productCount] = Product(productCount, _name, _price, _path, msg.sender, false);
 
-        emit ProductCreated(productCount, _name, _price, msg.sender, false);
+        emit ProductCreated(productCount, _name, _price, _path, msg.sender, false);
     }
 
     function purchaseProduct(uint _id) public payable {
@@ -59,6 +62,6 @@ contract Marketplace {
         products[_id] = myProduct;
         seller.transfer(msg.value);
 
-        emit ProductPurchased(_id, myProduct.name, myProduct.price, seller, myProduct.owner, true);
+        emit ProductPurchased(_id, myProduct.name, myProduct.price, myProduct.imgPath, seller, myProduct.owner, true);
     }
 }

@@ -9,7 +9,7 @@ const Create = (props) => {
             <Form onSubmit={(event) => {
                 event.preventDefault();
                 const data = new FormData(event.target);
-                props.createProduct(data.get('productName'), window.web3.utils.toWei(data.get('productPrice')).toString(), 'Ether');
+                props.createProduct(data.get('productName'), window.web3.utils.toWei(data.get('productPrice')).toString(), data.get('productUrl'));
             }}>
                 <Form.Group as={Row} controlId="formProductName">
                     <Form.Label column sm="1">Name</Form.Label>
@@ -28,7 +28,7 @@ const Create = (props) => {
                     <Col sm="4">
                         <Form.Control
                             name="productPrice"
-                            type="number" 
+                            type="value" 
                             placeholder="Enter product price"
                             // ref={price => this.productPrice = price}
                         />
@@ -37,6 +37,18 @@ const Create = (props) => {
                         <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroupPrepend">ETH</InputGroup.Text>
                         </InputGroup.Prepend>
+                    </Col>
+                </Form.Group>
+
+                <Form.Group as={Row} controlId="formProductUrl">
+                    <Form.Label column sm="1">Image Url</Form.Label>
+                    <Col sm="4">
+                        <Form.Control
+                            name="productUrl"
+                            type="text" 
+                            placeholder="Enter product image url" 
+                            // ref={name => this.productName = name}
+                        />
                     </Col>
                 </Form.Group>
                 <hr />

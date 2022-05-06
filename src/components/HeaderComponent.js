@@ -6,12 +6,12 @@ const Header = (props) => {
             <Navbar.Brand href="#">
                 <img 
                     alt="Marketplace Dapp"
-                    src="logo512.png"
+                    src="logo.png"
                     width="30"
                     height="30"
                     className="d-inline-block align-top"
                 />{' '}
-                Marketplace Dapp
+                PlantZomb Marketplace
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse>
